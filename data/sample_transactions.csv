@@ -1,0 +1,6 @@
+date,description,amount,type,account_code
+2025-01-01,Coffee purchase,-4.5,Expense,400
+2025-01-02,Client payment,1200.0,Income,100
+2025-01-03,Software subscription,-49.99,Expense,500
+2025-01-03,Office supplies,-28.3,Expense,420
+2025-01-04,Taxi expense,-17.8,Expense,430
