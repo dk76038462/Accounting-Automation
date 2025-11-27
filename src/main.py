@@ -9,7 +9,6 @@ OUTPUT_DIR = BASE_DIR / "output"
 
 
 def load_transactions(path: Path) -> pd.DataFrame:
-    """CSV 파일을 불러와 DataFrame으로 반환."""
     if not path.exists():
         raise FileNotFoundError(f"Data file not found: {path}")
     df = pd.read_csv(path)
@@ -17,7 +16,6 @@ def load_transactions(path: Path) -> pd.DataFrame:
 
 
 def summarize_by_type(df: pd.DataFrame) -> pd.DataFrame:
-    """거래 타입(Income/Expense)별 합계 계산."""
     summary = (
         df.groupby("type", as_index=False)["amount"]
         .sum()
@@ -27,7 +25,6 @@ def summarize_by_type(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_by_account(df: pd.DataFrame) -> pd.DataFrame:
-    """계정 코드(account_code)별 합계 계산."""
     summary = (
         df.groupby("account_code", as_index=False)["amount"]
         .sum()
@@ -37,7 +34,6 @@ def summarize_by_account(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def summarize_daily_net(df: pd.DataFrame) -> pd.DataFrame:
-    """날짜별 수입/지출/순이익 요약."""
     pivot = (
         df.pivot_table(
             index="date",
@@ -54,7 +50,7 @@ def summarize_daily_net(df: pd.DataFrame) -> pd.DataFrame:
     if "Expense" not in pivot.columns:
         pivot["Expense"] = 0.0
 
-    # Expense가 음수라고 가정 → Income + Expense = 순이익
+    
     pivot["net_income"] = pivot["Income"] + pivot["Expense"]
 
     daily_summary = pivot[["date", "Income", "Expense", "net_income"]]
@@ -62,7 +58,6 @@ def summarize_daily_net(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def save_summary(df: pd.DataFrame, filename: str) -> None:
-    """요약 DataFrame을 output 폴더에 CSV로 저장."""
     OUTPUT_DIR.mkdir(exist_ok=True)
     out_path = OUTPUT_DIR / filename
     df.to_csv(out_path, index=False)
