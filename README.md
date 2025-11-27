@@ -1,22 +1,32 @@
-# Accounting Transaction Automation – Summary Generator
+# Accounting Transaction Automation & Financial Dashboard
 
-This project is a small accounting automation tool that reads transaction data from a CSV file and produces summary reports.  
-It is designed to demonstrate how basic automation can reduce manual workload in bookkeeping and support data-driven decision making.
+This repository contains a small accounting automation pipeline that:
+1. Reads transaction data from a CSV file  
+2. Generates summary reports using Python and pandas  
+3. Visualises the results as simple financial dashboards using matplotlib  
+
+The goal is to show how basic automation can reduce manual workload in bookkeeping and support data-driven decision making.
 
 ---
 
 ## 📌 Project Overview
 
-The script:
+The project is split into two main parts:
 
-- Loads transaction data from `data/sample_transactions.csv`
-- Summarises totals by:
-  - **type** (Income / Expense)
-  - **account_code**
-  - **date** (daily net income)
-- Saves the results as CSV files in the `output/` folder
+1. **Automation & Summaries**  
+   - Load raw transaction data from `data/sample_transactions.csv`  
+   - Generate summary reports by:
+     - **type** (Income / Expense)
+     - **account_code**
+     - **date** (daily net income)
+   - Save the results into the `output/` folder as CSV files
 
-This project combines basic accounting knowledge with Python and pandas, and can be extended into dashboards or further analytics.
+2. **Financial Dashboard**  
+   - Read the summary CSV files from `output/`  
+   - Create simple charts using matplotlib  
+   - Export the charts as PNG images into the `images/` folder
+
+This mini pipeline connects basic accounting knowledge with Python, pandas, and simple visualisation.
 
 ---
 
@@ -26,9 +36,17 @@ This project combines basic accounting knowledge with Python and pandas, and can
 Accounting-Automation/
 ├── data/
 │   └── sample_transactions.csv
+│
 ├── output/
 │   ├── summary_by_type.csv
 │   ├── summary_by_account.csv
 │   └── daily_summary.csv
+│
+├── images/
+│   ├── daily_net_income.png
+│   ├── total_by_type.png
+│   └── total_by_account.png
+│
 └── src/
-    └── main.py
+    ├── main.py        # summary generator
+    └── dashboard.py   # chart generator
