@@ -1,8 +1,6 @@
 from pathlib import Path
 import pandas as pd
 
-
-# === 경로 설정 ===
 BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_PATH = BASE_DIR / "data" / "sample_transactions.csv"
 OUTPUT_DIR = BASE_DIR / "output"
